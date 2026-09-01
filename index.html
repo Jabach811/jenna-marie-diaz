@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenna Marie Diaz — Central Valley Realtor®</title>
+<meta name="description" content="Jenna Marie Diaz, Realtor® with eXp Realty. Helping Central Valley families buy and sell homes with honesty, hustle, and heart. CA DRE #02169285.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Archivo:wght@400;500;600&family=Cormorant:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --platinum: #e7ecef;
+    --dusk-blue: #274c77;
+    --steel-blue: #6096ba;
+    --icy-blue: #a3cef1;
+    --grey-olive: #8b8c89;
+    --red: #c1272d;
+    --paper: #f2f5f7;
+    --display: 'Italiana', serif;
+    --body: 'Archivo', sans-serif;
+    --quote: 'Cormorant', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--platinum);
+    color: var(--dusk-blue);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 5vw; }
+
+  /* ---------- small type utilities ---------- */
+  .label {
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--grey-olive);
+  }
+  .hl { background: linear-gradient(transparent 8%, var(--icy-blue) 8%, var(--icy-blue) 92%, transparent 92%); padding: 0 .18em; }
+  .hl-red { background: linear-gradient(transparent 8%, #f3c2c4 8%, #f3c2c4 92%, transparent 92%); padding: 0 .18em; }
+  .num { font-size: 11px; letter-spacing: .2em; color: var(--red); font-weight: 600; }
+
+  .display {
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: .92;
+    letter-spacing: .01em;
+  }
+
+  /* ---------- reveal animation ---------- */
+  .rv { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.22,.9,.3,1); }
+  .rv.in { opacity: 1; transform: none; }
+  .rv.d1 { transition-delay: .12s; } .rv.d2 { transition-delay: .24s; } .rv.d3 { transition-delay: .36s; }
+
+  /* ---------- placeholder slots ---------- */
+  .slot {
+    border: 1px dashed var(--steel-blue);
+    background: repeating-linear-gradient(-45deg, transparent 0 14px, rgba(96,150,186,.08) 14px 28px);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 1.5rem;
+  }
+  .slot span { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--steel-blue); line-height: 1.9; }
+
+  /* ---------- header ---------- */
+  header {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 5vw 2.6rem;
+    background: linear-gradient(180deg, rgba(12,28,48,.62) 0%, rgba(12,28,48,.32) 55%, transparent 100%);
+  }
+  header .brand { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; font-weight: 600; text-decoration: none; color: #fff; text-shadow: 0 1px 8px rgba(12,28,48,.6); }
+  header nav { display: flex; gap: 2.2rem; }
+  header nav a { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; color: #fff; text-shadow: 0 1px 8px rgba(12,28,48,.6); position: relative; }
+  header nav a::after { content: ''; position: absolute; left: 0; bottom: -4px; height: 1px; width: 0; background: var(--icy-blue); transition: width .3s; }
+  header nav a:hover::after { width: 100%; }
+
+  /* ---------- hero (full bleed) ---------- */
+  .hero { display: flex; flex-direction: column; padding: 0; }
+  .hero-bleed { position: relative; width: 100%; height: clamp(480px, 92vh, 960px); overflow: hidden; }
+  .hero-portrait {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 16%;
+    opacity: 0; transform: scale(1.04);
+    transition: opacity 1.2s ease, transform 2.2s cubic-bezier(.22,.9,.3,1);
+  }
+  .hero-portrait.in { opacity: 1; transform: scale(1); }
+  .hero-scrim {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(23,45,72,.55) 0%, rgba(23,45,72,.30) 45%, rgba(23,45,72,.50) 100%);
+  }
+  .hero-stack {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 3.5rem 5vw 0;
+  }
+  .hero-line { font-size: clamp(4.2rem, 13.5vw, 12.5rem); display: block; position: relative; color: #fff; text-shadow: 0 3px 28px rgba(12,28,48,.75), 0 1px 6px rgba(12,28,48,.5); }
+  .hero-line.l1 { text-align: left; margin-left: 1vw; }
+  .hero-line.l2 { text-align: center; margin-top: -.18em; }
+  .hero-line.l3 { text-align: right; margin-right: 3vw; margin-top: -.18em; }
+  .hero-line .thin { color: #fff; }
+  .hero-meta {
+    display: grid; grid-template-columns: minmax(0, 48%) minmax(10%, 1fr) auto;
+    align-items: end;
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+  }
+  .hero-intro { font-size: clamp(1rem, 1.4vw, 1.2rem); line-height: 1.75; letter-spacing: .01em; text-transform: uppercase; font-weight: 500; }
+  .hero-cred { grid-column: 3; text-align: right; }
+  .hero-cred p { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--grey-olive); line-height: 2.1; }
+  .hero-cred p b { color: var(--dusk-blue); font-weight: 600; }
+  .hero-cta {
+    display: inline-block; margin-top: 1.5rem; text-decoration: none;
+    font-size: 12px; letter-spacing: .24em; text-transform: uppercase; font-weight: 600;
+    color: var(--platinum); background: var(--dusk-blue); padding: 1rem 2.2rem;
+    box-shadow: 0 4px 14px -4px rgba(12,28,48,.45), 0 12px 28px -12px rgba(12,28,48,.35);
+    transition: background .3s, transform .25s, box-shadow .25s;
+  }
+  .hero-cta:hover { background: var(--red); transform: translateY(-2px); box-shadow: 0 8px 20px -6px rgba(12,28,48,.5), 0 18px 38px -14px rgba(12,28,48,.4); }
+  .hero-cta:active { transform: translateY(1px); box-shadow: 0 2px 8px -3px rgba(12,28,48,.45); }
+
+  /* ---------- ticker ---------- */
+  .ticker { border-top: 1px solid var(--dusk-blue); border-bottom: 1px solid var(--dusk-blue); overflow: hidden; padding: .85rem 0; background: var(--platinum); }
+  .ticker-track { display: flex; width: max-content; animation: tick 36s linear infinite; }
+  .ticker span { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; font-weight: 500; white-space: nowrap; padding-right: .75rem; }
+  .ticker i { font-style: normal; color: var(--red); padding-right: .75rem; }
+  @keyframes tick { to { transform: translateX(-50%); } }
+
+  /* ---------- section shell ---------- */
+  section.block { padding: clamp(5rem, 11vw, 9.5rem) 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .sec-title { font-size: clamp(3rem, 8.5vw, 7.5rem); }
+  .sec-title .offset { display: block; margin-left: clamp(2rem, 14vw, 14rem); color: var(--steel-blue); }
+
+  /* ---------- sell section ---------- */
+  .sell { background: var(--dusk-blue); color: var(--platinum); }
+  .sell .label { color: var(--icy-blue); }
+  .sell .num { color: var(--icy-blue); }
+  .sell .wrap { max-width: none; padding: 0 clamp(24px, 4vw, 60px); }
+  .sell-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .sell-photo { width: 100%; height: min(82vh, 880px); object-fit: cover; box-shadow: 0 30px 60px -25px rgba(12,28,48,.5); }
+  .sell-copy p { margin-bottom: 1.4rem; font-size: 1.02rem; line-height: 1.8; color: #cfdce8; max-width: 46ch; }
+  .sell-copy p b { color: var(--platinum); font-weight: 600; }
+  .sell .sec-title { color: var(--platinum); }
+  .sell .sec-title em { font-style: normal; color: var(--icy-blue); }
+  .sell-cta { display: inline-block; margin-top: .6rem; text-decoration: none; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; color: var(--dusk-blue); background: var(--platinum); padding: 1rem 2.2rem; box-shadow: 0 4px 14px -4px rgba(0,0,0,.5), 0 14px 30px -12px rgba(0,0,0,.45); transition: background .3s, color .3s, transform .25s, box-shadow .25s; }
+  .sell-cta:hover { background: var(--red); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 22px -6px rgba(0,0,0,.55), 0 20px 40px -14px rgba(0,0,0,.5); }
+  .sell-cta:active { transform: translateY(1px); box-shadow: 0 2px 8px -3px rgba(0,0,0,.5); }
+  .sell .slot { border-color: var(--icy-blue); aspect-ratio: 4/5; }
+  .sell .slot span { color: var(--icy-blue); }
+
+  /* ---------- about ---------- */
+  .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+  .about-photo { position: sticky; top: 6rem; }
+  .about-photo img { aspect-ratio: 4/5; object-fit: cover; object-position: 50% 20%; box-shadow: 0 30px 60px -25px rgba(39,76,119,.4); }
+  .about-copy p { margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.85; max-width: 56ch; }
+  .about-copy .lede { font-family: var(--quote); font-style: italic; font-weight: 500; font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.4; margin-bottom: 2rem; }
+  .about-copy .lede .red { color: var(--red); }
+  .photo-title { margin-top: 1.4rem; }
+  .photo-title .pt-main { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; font-weight: 400; color: var(--dusk-blue); }
+  .photo-title .pt-main b { font-weight: 600; }
+  .faith { border-left: 2px solid var(--steel-blue); padding-left: 1.4rem; color: #3d5f86; margin-bottom: 1.5rem; }
+  .faith .faith-quote { font-family: var(--quote); font-style: italic; font-weight: 500; font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.4; color: var(--dusk-blue); margin-bottom: .9rem; }
+
+  /* ---------- testimonials ---------- */
+  .letters { background: var(--paper); }
+  .letters-intro { max-width: 52ch; font-size: 1.05rem; line-height: 1.8; margin-bottom: clamp(3rem, 6vw, 5rem); }
+  .letters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3.5vw, 3rem); align-items: start; }
+  .card { background: #fff; padding: 12px 12px 3.2rem; box-shadow: 0 24px 50px -20px rgba(39,76,119,.35); position: relative; transition: transform .45s cubic-bezier(.22,.9,.3,1); }
+  .card:nth-child(1) { transform: rotate(-2deg); }
+  .card:nth-child(2) { transform: rotate(1.4deg) translateY(2.5rem); }
+  .card:nth-child(3) { transform: rotate(-1.2deg); }
+  .card:nth-child(4) { transform: rotate(1.8deg); }
+  .card:nth-child(5) { transform: rotate(-1.6deg) translateY(2rem); }
+  .card:nth-child(6) { transform: rotate(1.2deg); }
+  .card:hover { transform: rotate(0) translateY(-6px) scale(1.02); z-index: 5; }
+  .card img { width: 100%; }
+  .card figcaption { position: absolute; bottom: 1rem; left: 12px; right: 12px; font-family: var(--quote); font-style: italic; font-size: 1.05rem; color: var(--grey-olive); text-align: center; }
+  .card .pin { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; border-radius: 50%; background: var(--red); box-shadow: 0 3px 6px rgba(0,0,0,.3); }
+
+  .letters-note { margin-top: clamp(3.5rem, 6vw, 5rem); text-align: center; }
+  .letters-note .big-quote { font-family: var(--quote); font-style: italic; font-weight: 600; font-size: clamp(1.6rem, 3.4vw, 2.6rem); line-height: 1.35; max-width: 30ch; margin: 0 auto .75rem; }
+  .letters-note .big-quote .red { color: var(--red); }
+
+  /* ---------- search handoff ---------- */
+  .search-block { text-align: center; }
+  .search-block .sec-title { margin-bottom: 1.5rem; }
+  .search-block .sec-title .fill { color: var(--steel-blue); }
+  .search-block p { max-width: 48ch; margin: 0 auto 2.2rem; font-size: 1.02rem; line-height: 1.8; }
+  .search-fake {
+    max-width: 640px; margin: 0 auto; display: flex; border: 1px solid var(--dusk-blue); background: #fff;
+    box-shadow: 0 6px 18px -6px rgba(39,76,119,.3), 0 18px 40px -18px rgba(39,76,119,.35);
+  }
+  .search-fake input { flex: 1; border: 0; padding: 1.2rem 1.4rem; font-family: var(--body); font-size: 16px; letter-spacing: .05em; color: var(--dusk-blue); background: transparent; outline: none; }
+  .search-fake a { text-decoration: none; background: var(--dusk-blue); color: var(--platinum); font-size: 12px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; padding: 1.2rem 2rem; display: flex; align-items: center; box-shadow: inset 0 0 0 0 rgba(0,0,0,0); transition: background .3s, filter .25s; }
+  .search-fake a:hover { background: var(--red); filter: brightness(1.05); }
+  .search-fake a:active { filter: brightness(.92); }
+  .search-sub { margin-top: 1rem; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--grey-olive); }
+
+  /* ---------- contact ---------- */
+  .contact { background: var(--dusk-blue); color: var(--platinum); padding-bottom: 3rem !important; }
+  .contact .sec-title { color: var(--platinum); }
+  .contact .sec-title .offset { color: var(--icy-blue); }
+  .contact-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 2.5rem; flex-wrap: wrap; margin-top: 1rem; }
+  .contact-row .pitch { max-width: 46ch; font-size: 1.02rem; line-height: 1.8; color: #cfdce8; text-transform: uppercase; font-weight: 500; font-size: .95rem; letter-spacing: .04em; }
+  .contact-row .pitch .hl { color: var(--dusk-blue); }
+  .contact-links { text-align: right; }
+  .contact-links a { display: block; font-family: var(--display); font-size: clamp(1.6rem, 3.2vw, 2.6rem); text-decoration: none; line-height: 1.35; color: var(--platinum); transition: color .3s; }
+  .contact-links a:hover { color: var(--icy-blue); }
+  .contact-links .label { color: var(--steel-blue); margin-top: .5rem; display: block; }
+
+  footer { border-top: 1px solid rgba(163,206,241,.3); margin-top: clamp(3.5rem, 7vw, 6rem); padding-top: 2rem; }
+  footer .fine { font-size: 10.5px; line-height: 1.9; color: #9fb4ca; letter-spacing: .04em; max-width: 90ch; }
+  footer .row { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-top: 1.8rem; }
+  footer .row .label { color: #9fb4ca; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    header nav { display: none; }
+    .hero-meta { display: block; }
+    .hero-cred { text-align: left; margin-top: 2rem; }
+    .sell-photo { height: auto; aspect-ratio: 4/5; }
+    .sell-grid, .about-grid { grid-template-columns: 1fr; }
+    .about-photo { position: static; max-width: 420px; }
+    .letters-grid { grid-template-columns: 1fr 1fr; }
+    .card:nth-child(n) { transform: rotate(-1deg); }
+    .contact-links { text-align: left; }
+  }
+  @media (max-width: 640px) {
+    .hero-bleed { height: clamp(420px, 78vh, 700px); }
+    .hero-portrait { object-position: 42% 16%; }
+    .hero-meta { margin-top: 2.5rem; }
+  }
+  @media (max-width: 560px) {
+    .letters-grid { grid-template-columns: 1fr; }
+    .search-fake { flex-direction: column; }
+    .search-fake a { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="#">Jenna Marie Diaz</a>
+  <nav>
+    <a href="#sell">Sell</a>
+    <a href="#about">About</a>
+    <a href="#letters">Love Letters</a>
+    <a href="#search">Search Homes</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="hero-bleed">
+    <img class="hero-portrait" src="Jenna%20Portrait.png" alt="Jenna Marie Diaz, Realtor, working at her laptop" width="1254" height="1254" fetchpriority="high">
+    <div class="hero-scrim"></div>
+    <div class="hero-stack">
+      <span class="display hero-line l1 rv">Jenna</span>
+      <span class="display hero-line l2 rv d1">Marie</span>
+      <span class="display hero-line l3 rv d2"><span class="thin">Diaz</span></span>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-meta">
+      <p class="hero-intro rv d2">
+        Buying or selling a home is the <span class="hl">biggest move</span> your family will make.
+        I treat it that way — with honesty, hustle, and <span class="hl-red">heart</span> — across the Central Valley.
+      </p>
+      <div class="hero-cred rv d3">
+        <p><b>Realtor®</b> — eXp Realty<br>Northern California</p>
+        <p>CA DRE #02169285</p>
+        <a class="hero-cta" href="#contact">Let's Talk</a>
+      </div>
+    </div>
+    <div style="height: clamp(2.5rem, 5vw, 4rem);"></div>
+  </div>
+</section>
+
+<!-- ======================= TICKER (cities = placeholder, confirm with Jenna) ======================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Modesto</span><i>✦</i><span>Stockton</span><i>✦</i><span>Manteca</span><i>✦</i><span>Tracy</span><i>✦</i><span>Turlock</span><i>✦</i><span>Lodi</span><i>✦</i><span>Ripon</span><i>✦</i><span>Oakdale</span><i>✦</i>
+    <span>Modesto</span><i>✦</i><span>Stockton</span><i>✦</i><span>Manteca</span><i>✦</i><span>Tracy</span><i>✦</i><span>Turlock</span><i>✦</i><span>Lodi</span><i>✦</i><span>Ripon</span><i>✦</i><span>Oakdale</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ======================= SELL ======================= -->
+<section class="block sell" id="sell">
+  <div class="wrap">
+    <div class="sell-grid">
+      <div>
+        <p class="num rv">01 — Selling</p>
+        <h2 class="display sec-title rv d1">Sold fast.<br><em>Top dollar.</em></h2>
+        <div class="sell-copy rv d2">
+          <p>Listing your home shouldn't be stressful or overwhelming. From pricing to staging to the negotiating table, <b>you get an agent who actually picks up the phone</b> — and fights for every dollar like it's her own.</p>
+          <p>Curious what your home is worth right now? Get a <b>free market report</b> — price trends, new listings, and what your neighbors actually sold for.</p>
+          <a class="sell-cta" href="#contact">Get My Free Market Report</a>
+        </div>
+      </div>
+      <div class="rv d2">
+        <img class="sell-photo" src="Central%20Valley%20home%20exterior.jpg" alt="Two-story Central Valley home at golden hour" width="1122" height="1402" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ABOUT ======================= -->
+<section class="block" id="about">
+  <div class="wrap">
+    <p class="num rv">02 — Meet Jenna</p>
+    <h2 class="display sec-title rv d1">More than<span class="offset">an agent</span></h2>
+    <div class="about-grid">
+      <div class="about-photo rv">
+        <img src="outside%20portrait.png" alt="Jenna in her Your Faithful Realtor sweatshirt, backyard cross behind her" width="862" height="1142" loading="lazy" decoding="async">
+        <div class="photo-title">
+          <p class="pt-main">Your <b>Faithful</b> Realtor</p>
+        </div>
+      </div>
+      <div class="about-copy">
+        <p class="lede rv">"She made us feel like family — <span class="red">not just another buyer</span>."</p>
+        <p class="rv d1">That line is from a real client, and it's the whole job description. Jenna works the Northern and Central Valley the old-fashioned way: driving to every showing, negotiating like a bulldog, and answering the phone at hours most agents won't. FaceTime walkthroughs for out-of-state buyers. Honest opinions on every property, even when it costs her the sale.</p>
+        <div class="rv d2 faith">
+          <p class="faith-quote">"Serving with all my heart, as unto the Lord."</p>
+          <p style="margin-bottom:0;">That's Jenna, in her own words. Her faith isn't a slogan — it's why she works with patience, honesty, and a servant's heart, and treats every family she represents the way she'd want her own treated.</p>
+        </div>
+        <p class="rv d3">[PLACEHOLDER BIO FACTS — years in the business, hometown, family, what she did before real estate. Two sentences from Jenna and this paragraph writes itself.]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LOVE LETTERS ======================= -->
+<section class="block letters" id="letters">
+  <div class="wrap">
+    <p class="num rv">03 — Testimonials</p>
+    <h2 class="display sec-title rv d1">Love<span class="offset">letters</span></h2>
+    <p class="letters-intro rv d2">No stock reviews here. These are real cards, texts, and closing days from real Central Valley families. <em>(Client names shown pending Jenna's OK — we can crop them if anyone prefers.)</em></p>
+
+    <div class="letters-grid">
+      <figure class="card rv"><span class="pin"></span><img src="Thank%20you%203.png" alt="Handwritten thank-you card from the Almanza family" width="502" height="647" loading="lazy" decoding="async"><figcaption>— The Almanza Family</figcaption></figure>
+      <figure class="card rv d1"><span class="pin"></span><img src="Thank%20you%204.png" alt="Handwritten thank-you card from Danny and Elaine" width="817" height="667" loading="lazy" decoding="async"><figcaption>— Danny &amp; Elaine</figcaption></figure>
+      <figure class="card rv d2"><span class="pin"></span><img src="Thank%20You%201.png" alt="Welcome home balloons and closing gifts staged in a client's new kitchen" width="597" height="1011" loading="lazy" decoding="async"><figcaption>Closing day, done right</figcaption></figure>
+      <figure class="card rv"><span class="pin"></span><img src="Thank%20you%202.png" alt="Personalized closing gift for the Leow family with their thank-you messages" width="850" height="1072" loading="lazy" decoding="async"><figcaption>— The Leow Family</figcaption></figure>
+      <figure class="card rv d1"><span class="pin"></span><img src="Thank%20you%205.png" alt="Text from a first-time buyer going into contract" width="442" height="385" loading="lazy" decoding="async"><figcaption>First-time buyers, in contract</figcaption></figure>
+      <figure class="card rv d2"><span class="pin"></span><img src="Second%20portrait%20of%20Jenna.png" alt="Jenna with clients at their home build and in their new kitchen" width="925" height="1135" loading="lazy" decoding="async"><figcaption>From framing walk to finished kitchen</figcaption></figure>
+    </div>
+
+    <div class="letters-note rv">
+      <p class="big-quote">"Thank you Jenna, from all the <span class="red">square footage</span> of our hearts."</p>
+      <p class="label">— actual client, actual card</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SEARCH HANDOFF ======================= -->
+<section class="block search-block" id="search">
+  <div class="wrap">
+    <p class="num rv">04 — Search</p>
+    <h2 class="display sec-title rv d1">Find your<br><span class="fill">next door</span></h2>
+    <p class="rv d2">Browse every active listing in the MLS — homes, condos, land and more — on Jenna's live search site.</p>
+    <div class="search-fake rv d2">
+      <input type="text" placeholder="City, ZIP, or address…" aria-label="Search location">
+      <a href="https://jennadiaz.exprealty.com/index.php" target="_blank" rel="noopener">Search Homes</a>
+    </div>
+    <p class="search-sub rv d3">Opens Jenna's MLS search, powered by eXp Realty</p>
+  </div>
+</section>
+
+<!-- ======================= CONTACT ======================= -->
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <p class="num rv" style="color: var(--icy-blue);">05 — Contact</p>
+    <h2 class="display sec-title rv d1">Get in<span class="offset">touch</span></h2>
+    <div class="contact-row">
+      <p class="pitch rv d2">Thinking of <span class="hl">buying</span>, <span class="hl">selling</span>, or just curious what your home is worth? One call. No pressure. <span class="hl-red" style="color:var(--dusk-blue);">She can help.</span></p>
+      <div class="contact-links rv d2">
+        <a href="tel:12093906468">209 · 390 · 6468</a>
+        <a href="mailto:realtor.jennamarie@gmail.com">realtor.jennamarie@gmail.com</a>
+        <a href="https://www.instagram.com/realtor.jennamarie/" target="_blank" rel="noopener">@realtor.jennamarie</a>
+        <span class="label">DMs open · Se habla español? — confirm</span>
+      </div>
+    </div>
+
+    <footer>
+      <p class="fine">
+        Jenna Marie Diaz · Realtor® · CA DRE #02169285 — eXp Realty of Northern California, Inc. · CA DRE #02188495 · 915 Highland Pointe Dr Ste 250, Roseville, CA 95678.
+        All information deemed reliable but not guaranteed. All real estate advertised herein is subject to the Federal Fair Housing Act. Equal Housing Opportunity.
+      </p>
+      <div class="row">
+        <span class="label">© 2026 Jenna Marie Diaz</span>
+        <span class="label">Central Valley, California</span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: .15 });
+  document.querySelectorAll('.rv, .hero-portrait').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
